@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The AI Uplevel Series — Coming to the Members Lounge</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { font-family: 'Poppins', sans-serif; margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: #000; color: #fff; }
+
+    /* ── Gradient text ── */
+    .grad-purple-green {
+      background: linear-gradient(135deg, #6161FF 0%, #00CA72 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-purple-yellow {
+      background: linear-gradient(135deg, #6161FF 0%, #FFCC00 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .grad-red-purple {
+      background: linear-gradient(135deg, #FB275D 0%, #6161FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── Sticky nav ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 14px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav a {
+      font-size: 12px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: #fff; }
+
+    /* ── Sections ── */
+    section { padding: 96px 0; }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    /* ── Section label ── */
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      color: #6161FF;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: #0f0f1a;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      border-color: rgba(97,97,255,0.3);
+      box-shadow: 0 0 28px rgba(97,97,255,0.08);
+    }
+
+    /* ── Divider ── */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin: 0;
+    }
+
+    /* ── Session card (teaser) ── */
+    .session-card {
+      background: #0a0a14;
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+    }
+    .session-card:hover {
+      border-color: rgba(97,97,255,0.2);
+      box-shadow: 0 4px 24px rgba(97,97,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    .session-num {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    /* ── Kickoff card ── */
+    .kickoff-card {
+      background: linear-gradient(160deg, #0d0d2a 0%, #0a0a18 100%);
+      border: 1px solid rgba(251,39,93,0.3);
+      border-radius: 20px;
+      padding: 44px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .kickoff-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #FB275D, #6161FF, #00CA72);
+    }
+
+    /* ── CTA section ── */
+    #cta {
+      background: linear-gradient(160deg, #08082a 0%, #000 60%);
+      border-top: 1px solid rgba(97,97,255,0.2);
+    }
+
+    /* ── Scroll fade-in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Stagger children ── */
+    .stagger > * { transition-delay: calc(var(--i, 0) * 0.07s); }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     STICKY NAV
+══════════════════════════════════════════════════ -->
+<nav>
+  <!-- Logo -->
+  <svg viewBox="0 0 542.3 126.9" style="height:20px;width:auto;" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#FB275D" d="M24.8,87.2c-3.7,0-7.1-1.9-8.9-5.1c-1.8-3.1-1.7-6.9,0.3-9.9L34.5,44c1.9-3.1,5.4-4.9,9.1-4.8 c3.7,0.1,7.1,2.1,8.8,5.3c1.7,3.2,1.5,7-0.5,9.9L33.4,82.6C31.6,85.4,28.3,87.2,24.8,87.2z"/>
+    <path fill="#FFCC00" d="M56.1,87.2c-3.7,0-7.1-1.9-8.9-5c-1.8-3.1-1.7-6.9,0.3-9.9l18.4-28.1c1.9-3.1,5.3-5,9.1-4.9s7.1,2.1,8.8,5.3 s1.5,7-0.7,10l-18.4,28C62.9,85.4,59.6,87.1,56.1,87.2L56.1,87.2z"/>
+    <path fill="#00CA72" d="M86.7,87.2c5.6,0,10.2-4.6,10.2-10.2s-4.6-10.2-10.2-10.2S76.5,71.4,76.5,77C76.5,82.7,81,87.2,86.7,87.2z"/>
+    <path fill="#FFFFFF" d="M170.9,41.8c5.6,0,10,1.7,13.3,5.1s5,8.1,5,14.1v26.2h-13.7V62.8c0-2.9-0.8-5.1-2.3-6.7s-3.6-2.4-6.3-2.4 s-4.8,0.8-6.4,2.4c-1.5,1.5-2.2,3.8-2.2,6.7v24.4h-13.7V62.8c0-2.9-0.8-5.1-2.3-6.7s-3.6-2.4-6.3-2.4s-4.8,0.8-6.4,2.4 c-1.5,1.5-2.2,3.8-2.2,6.7v24.4h-13.8V42.3h13.8v5.6c1.4-1.9,3.2-3.3,5.5-4.4c2.2-1.1,4.8-1.7,7.6-1.7c3.4,0,6.4,0.7,9,2.2 c2.7,1.5,4.8,3.5,6.3,6.2c1.6-2.5,3.7-4.5,6.4-6C164.8,42.5,167.7,41.8,170.9,41.8z"/>
+    <path fill="#FFFFFF" d="M216.8,87.8c-4.4,0-8.4-0.9-11.9-2.8c-3.5-1.9-6.2-4.6-8.3-8c-2-3.5-3-7.6-3-12.2s1-8.7,3.1-12.1 c2-3.5,4.8-6.2,8.4-8.1c3.5-1.9,7.5-2.8,11.9-2.8s8.4,0.9,11.9,2.8s6.3,4.6,8.4,8.1c2,3.5,3.1,7.5,3.1,12.1s-1.1,8.7-3.1,12.2 s-4.9,6.2-8.4,8C225.2,86.8,221.2,87.8,216.8,87.8z M216.8,75.8c2.6,0,4.9-1,6.7-2.9c1.9-1.9,2.8-4.7,2.8-8.3s-0.9-6.3-2.7-8.3 c-1.8-1.9-4-2.9-6.6-2.9c-2.7,0-4.9,1-6.7,2.9s-2.6,4.6-2.6,8.3c0,3.6,0.9,6.3,2.6,8.3C212,74.9,214.2,75.8,216.8,75.8z"/>
+    <path fill="#FFFFFF" d="M272.5,41.8c5.3,0,9.4,1.7,12.5,5.2c3.2,3.4,4.8,8,4.8,14v26.2h-13.7V62.8c0-3-0.8-5.3-2.3-7 c-1.6-1.7-3.6-2.5-6.3-2.5c-2.6,0-4.7,0.8-6.3,2.5c-1.6,1.7-2.3,4-2.3,7v24.4h-13.8V42.3h13.8v5.9c1.4-2,3.3-3.5,5.6-4.7 C266.9,42.3,269.6,41.8,272.5,41.8z"/>
+    <path fill="#FFFFFF" d="M294.2,64.6c0-4.6,0.9-8.7,2.6-12.1c1.8-3.5,4.2-6.2,7.2-8c3-1.9,6.4-2.8,10-2.8c3,0,5.6,0.6,8,1.8 c2.5,1.2,4.4,2.9,5.8,5V27.7h13.8v59.5h-13.8v-6.4c-1.3,2.1-3.1,3.9-5.5,5.2c-2.4,1.3-5.1,1.9-8.3,1.9c-3.7,0-7-0.9-10-2.8 s-5.4-4.6-7.2-8.1C295.1,73.3,294.2,69.2,294.2,64.6z M327.8,64.7c0-3.4-1-6.1-2.9-8.1s-4.2-3-6.9-3c-2.7,0-5.1,1-7,3 c-1.9,1.9-2.8,4.6-2.8,8s0.9,6.2,2.8,8.2s4.3,3,7,3s5-1,6.9-3C326.9,70.8,327.8,68.1,327.8,64.7z"/>
+    <path fill="#FFFFFF" d="M346.4,64.6c0-4.6,0.9-8.7,2.6-12.1c1.8-3.5,4.2-6.2,7.2-8c3-1.9,6.4-2.8,10-2.8c3.2,0,5.9,0.6,8.3,1.9 s4.3,3,5.5,5.1v-6.3h13.8v44.9H380v-6.4c-1.3,2.1-3.2,3.8-5.6,5.1s-5.1,1.9-8.3,1.9c-3.6,0-7-0.9-10-2.8c-3-1.9-5.4-4.6-7.2-8.1 C347.2,73.3,346.4,69.2,346.4,64.6z M380,64.7c0-3.4-1-6.1-2.9-8.1s-4.2-3-6.9-3c-2.7,0-5.1,1-7,3c-1.9,1.9-2.8,4.6-2.8,8 s0.9,6.2,2.8,8.2s4.3,3,7,3s5-1,6.9-3C379,70.8,380,68.1,380,64.7z"/>
+    <path fill="#FFFFFF" d="M447.1,42.2L419,108.4h-14.8l10.3-22.8l-18.3-43.4h15.4L422,70.3l10.3-28.1L447.1,42.2L447.1,42.2z"/>
+    <path fill="#FFFFFF" d="M438.8,87.7c-1.2,0-2.2-0.4-3.1-1.1c-0.8-0.8-1.2-1.7-1.2-2.9s0.4-2.1,1.2-2.8c0.8-0.8,1.8-1.2,3.1-1.2 c1.2,0,2.2,0.4,3,1.2c0.8,0.7,1.2,1.7,1.2,2.8s-0.4,2.1-1.2,2.9C441,87.3,440,87.7,438.8,87.7z"/>
+    <path fill="#FFFFFF" d="M448.7,77.2c0-2.1,0.4-3.9,1.3-5.5s2-2.8,3.5-3.6c1.5-0.9,3.2-1.3,5.2-1.3c2.5,0,4.6,0.6,6.2,1.9 c1.6,1.2,2.8,3,3.3,5.2h-5.5c-0.3-0.9-0.8-1.6-1.5-2c-0.7-0.5-1.5-0.8-2.5-0.8c-1.5,0-2.6,0.5-3.5,1.6c-0.9,1-1.3,2.5-1.3,4.5 c0,1.9,0.4,3.4,1.3,4.5c0.9,1,2,1.6,3.5,1.6c2.1,0,3.4-0.9,4-2.8h5.5c-0.6,2.2-1.7,3.9-3.3,5.2c-1.6,1.3-3.7,1.9-6.2,1.9 c-1.9,0-3.7-0.4-5.2-1.3c-1.5-0.9-2.7-2.1-3.5-3.6C449.1,81.1,448.7,79.3,448.7,77.2z"/>
+    <path fill="#FFFFFF" d="M480.1,87.6c-1.9,0-3.7-0.4-5.2-1.3c-1.5-0.9-2.8-2.1-3.7-3.7c-0.9-1.6-1.3-3.4-1.3-5.5s0.5-3.9,1.4-5.5 s2.2-2.8,3.8-3.6c1.6-0.9,3.3-1.3,5.3-1.3s3.7,0.4,5.3,1.3c1.6,0.8,2.8,2.1,3.7,3.6c0.9,1.6,1.4,3.4,1.4,5.5s-0.5,3.9-1.4,5.5 s-2.2,2.8-3.8,3.7C483.9,87.2,482.1,87.6,480.1,87.6z M480.1,83.2c0.9,0,1.8-0.2,2.6-0.7c0.8-0.5,1.5-1.1,2-2s0.7-2,0.7-3.3 c0-1.9-0.5-3.4-1.5-4.4s-2.2-1.6-3.7-1.6s-2.7,0.5-3.7,1.6c-1,1-1.5,2.5-1.5,4.4s0.5,3.4,1.4,4.4C477.5,82.7,478.7,83.2,480.1,83.2z"/>
+    <path fill="#FFFFFF" d="M518.7,66.8c2.5,0,4.5,0.8,6,2.3s2.3,3.6,2.3,6.3v11.8h-5.1V76.1c0-1.6-0.4-2.8-1.2-3.6 c-0.8-0.8-1.9-1.3-3.3-1.3c-1.4,0-2.5,0.4-3.3,1.3c-0.8,0.8-1.2,2-1.2,3.6v11.1h-5.1V76.1c0-1.6-0.4-2.8-1.2-3.6 c-0.8-0.8-1.9-1.3-3.3-1.3s-2.5,0.4-3.4,1.3c-0.8,0.8-1.2,2-1.2,3.6v11.1h-5.1V67h5.1v2.4c0.6-0.8,1.5-1.5,2.5-2s2.2-0.7,3.4-0.7 c1.6,0,3,0.3,4.2,1s2.2,1.6,2.9,2.8c0.6-1.2,1.6-2.1,2.8-2.8C515.9,67.2,517.3,66.8,518.7,66.8z"/>
+  </svg>
+
+  <div style="display:flex;gap:32px;">
+    <a href="#kickoff">Session 1</a>
+    <a href="#lineup">The Lineup</a>
+    <a href="#details">Details</a>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════ -->
+<section id="hero" style="padding: 160px 0 96px; position:relative; overflow:hidden;">
+
+  <!-- Background glow orbs -->
+  <div style="position:absolute;top:-120px;right:-80px;width:560px;height:560px;background:radial-gradient(circle,rgba(97,97,255,0.14) 0%,transparent 60%);pointer-events:none;"></div>
+  <div style="position:absolute;bottom:-80px;left:60px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,202,114,0.08) 0%,transparent 60%);pointer-events:none;"></div>
+  <div style="position:absolute;top:200px;left:-120px;width:300px;height:300px;background:radial-gradient(circle,rgba(251,39,93,0.06) 0%,transparent 60%);pointer-events:none;"></div>
+
+  <div class="container">
+    <div style="max-width:760px;">
+      <div class="eyebrow fade-in">SE Team Presents</div>
+      <h1 class="fade-in" style="font-size:72px;font-weight:800;line-height:1.02;margin-bottom:24px;">
+        The AI<br/><span class="grad-purple-green">Uplevel Series.</span>
+      </h1>
+      <p class="fade-in" style="font-size:19px;color:rgba(255,255,255,0.55);line-height:1.7;max-width:560px;margin-bottom:44px;">
+        Six sessions in the Members Lounge. Half TED Talk, half hands-on workshop. You'll walk out knowing AI, using AI, and selling monday AI.
+      </p>
+
+      <!-- Kickoff pill -->
+      <div class="fade-in" style="display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(251,39,93,0.12),rgba(97,97,255,0.12));border:1px solid rgba(251,39,93,0.3);border-radius:12px;padding:16px 28px;margin-bottom:32px;">
+        <div style="width:42px;height:42px;background:rgba(251,39,93,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;">1</div>
+        <div>
+          <div style="font-size:11px;font-weight:600;color:#FB275D;letter-spacing:0.12em;text-transform:uppercase;">Session 1 kicks off</div>
+          <div style="font-size:18px;font-weight:700;color:#fff;margin-top:2px;">Wednesday, March 18 &middot; 1:30 PM ET &middot; Members Lounge</div>
+        </div>
+      </div>
+
+      <div class="fade-in" style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;background:#0f0f1a;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 18px;">
+          <span style="color:#FFCC00;font-size:16px;">&#10022;</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);">Wednesdays &middot; 1:30&ndash;3:00 PM ET</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:#0f0f1a;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 18px;">
+          <span style="color:#00CA72;font-size:16px;">&#10022;</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);">BYO laptop + your favourite AI tool</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;background:#0f0f1a;border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 18px;">
+          <span style="color:#6161FF;font-size:16px;">&#10022;</span>
+          <span style="font-size:13px;color:rgba(255,255,255,0.7);">No prior AI experience needed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════════
+     SESSION 1 SPOTLIGHT
+══════════════════════════════════════════════════ -->
+<section id="kickoff" style="padding:80px 0;">
+  <div class="container">
+
+    <div class="fade-in" style="margin-bottom:40px;">
+      <div class="eyebrow">Up first</div>
+      <h2 style="font-size:40px;font-weight:700;line-height:1.1;">Session 1 is this Wednesday.</h2>
+    </div>
+
+    <div class="kickoff-card fade-in">
+      <div style="display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap;">
+
+        <!-- Left: content -->
+        <div style="flex:1;min-width:320px;">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+            <div style="width:52px;height:52px;background:#FB275D;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;">01</div>
+            <div>
+              <div style="font-size:10px;font-weight:600;color:#FB275D;letter-spacing:0.12em;text-transform:uppercase;">Foundations</div>
+              <div style="font-size:24px;font-weight:700;">What the $%*&amp; is AI?</div>
+            </div>
+          </div>
+          <p style="font-size:15px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:24px;">
+            We're starting from the ground up. What are LLMs, how do they actually work, and why do they sometimes make things up? You'll see how the industry benchmarks models, learn a framework for thinking about AI, and write your first structured prompt &mdash; using whatever AI tool you already have.
+          </p>
+          <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.6;">
+            Bring your laptop and your AI tool of choice &mdash; ChatGPT, Claude, Gemini, Perplexity, whatever you've got. No AI experience required. Seriously.
+          </p>
+        </div>
+
+        <!-- Right: logistics -->
+        <div style="width:260px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:28px 24px;flex-shrink:0;">
+          <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Details</div>
+
+          <div style="margin-bottom:16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Date</div>
+            <div style="font-size:15px;font-weight:600;color:#fff;">Wednesday, March 18</div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Time</div>
+            <div style="font-size:15px;font-weight:600;color:#fff;">1:30 &ndash; 3:00 PM ET</div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Location</div>
+            <div style="font-size:15px;font-weight:600;color:#fff;">Members Lounge</div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Duration</div>
+            <div style="font-size:15px;font-weight:600;color:#fff;">90 min (1:30&ndash;3:00 PM)</div>
+          </div>
+          <div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Bring</div>
+            <div style="font-size:15px;font-weight:600;color:#fff;">Laptop + your AI tool</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════════
+     THE LINEUP (TEASER FORMAT)
+══════════════════════════════════════════════════ -->
+<section id="lineup">
+  <div class="container">
+
+    <div class="fade-in" style="margin-bottom:52px;">
+      <div class="eyebrow">The lineup</div>
+      <h2 style="font-size:40px;font-weight:700;line-height:1.1;">Six sessions.<br/><span class="grad-purple-yellow">Here's what's coming.</span></h2>
+    </div>
+
+    <div class="fade-in stagger" style="display:flex;flex-direction:column;gap:12px;">
+
+      <!-- Session 1 -->
+      <div class="session-card" style="--i:0;border-color:rgba(251,39,93,0.2);">
+        <div class="session-num" style="background:#FB275D;">01</div>
+        <div style="flex:1;">
+          <div style="font-size:18px;font-weight:600;">What the $%*&amp; is AI?</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">Cutting through the hype. LLMs, hallucinations, and your first real prompt.</div>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:#FB275D;white-space:nowrap;">WED 3/18 &#8594;</div>
+      </div>
+
+      <!-- Session 2 -->
+      <div class="session-card" style="--i:1;">
+        <div class="session-num" style="background:#00CA72;">02</div>
+        <div style="flex:1;">
+          <div style="font-size:18px;font-weight:600;">monday AI &mdash; the full tour</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">Every AI feature in the platform. Hands-on with Brad's Demo Factory.</div>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:#00CA72;white-space:nowrap;">WED 3/25</div>
+      </div>
+
+      <!-- Session 3 -->
+      <div class="session-card" style="--i:2;">
+        <div class="session-num" style="background:#579BFC;">03</div>
+        <div style="flex:1;">
+          <div style="font-size:18px;font-weight:600;">Prompt like a pro</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">From trial-and-error to intentional. Sales-specific prompt recipes you'll keep.</div>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:#579BFC;white-space:nowrap;">WED 4/1</div>
+      </div>
+
+      <!-- Session 4 -->
+      <div class="session-card" style="--i:3;">
+        <div class="session-num" style="background:#FDAB3D;">04</div>
+        <div style="flex:1;">
+          <div style="font-size:18px;font-weight:600;">AI that sells</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">Account research in 90 seconds. Follow-ups in 30. Your AI-powered sales week.</div>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:#FDAB3D;white-space:nowrap;">WED 4/8</div>
+      </div>
+
+      <!-- Session 5 -->
+      <div class="session-card" style="--i:4;">
+        <div class="session-num" style="background:#6161FF;">05</div>
+        <div style="flex:1;">
+          <div style="font-size:18px;font-weight:600;">Meet your digital workers</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">The difference between automation and agents. You'll build one.</div>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.25);white-space:nowrap;">TBD</div>
+      </div>
+
+      <!-- Session 6 -->
+      <div class="session-card" style="--i:5;">
+        <div class="session-num" style="background:linear-gradient(135deg,#6161FF,#9d50dd);">06</div>
+        <div style="flex:1;">
+          <div style="font-size:18px;font-weight:600;">Own the AI conversation</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">The 8 objections you'll hear. Competitive positioning. A high-pressure gauntlet.</div>
+        </div>
+        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.25);white-space:nowrap;">TBD</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+
+<!-- ══════════════════════════════════════════════════
+     WHAT TO EXPECT
+══════════════════════════════════════════════════ -->
+<section id="details">
+  <div class="container">
+
+    <div class="fade-in" style="margin-bottom:52px;">
+      <div class="eyebrow">What to expect</div>
+      <h2 style="font-size:40px;font-weight:700;line-height:1.1;">Not a lecture.<br/>Not a lunch-and-learn.</h2>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;" class="fade-in">
+
+      <div class="card" style="text-align:center;padding:36px 24px;">
+        <div style="font-size:48px;font-weight:700;line-height:1;" class="grad-purple-green">30</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-top:8px;margin-bottom:16px;">min talk</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.6;">An SE-hosted TED-style talk. The concept, the context, the "why this matters." No death-by-slide.</p>
+      </div>
+
+      <div class="card" style="text-align:center;padding:36px 24px;">
+        <div style="font-size:48px;font-weight:700;color:#00CA72;line-height:1;">30</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-top:8px;margin-bottom:16px;">min hands-on</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.6;">A different exercise every session. Prompt challenges, platform builds, live agent creation, objection gauntlets.</p>
+      </div>
+
+      <div class="card" style="text-align:center;padding:36px 24px;">
+        <div style="font-size:48px;font-weight:700;color:#FFCC00;line-height:1;">30</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-top:8px;margin-bottom:16px;">min debrief</div>
+        <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.6;">Group debrief, open Q&amp;A, and one concrete thing you can use tomorrow. Every session ends with a clear takeaway.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     CTA FOOTER
+══════════════════════════════════════════════════ -->
+<section id="cta" style="padding:80px 0;">
+  <div class="container" style="text-align:center;">
+    <div class="fade-in">
+      <p style="font-size:13px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">monday.com SE Team &middot; 2026</p>
+      <h2 style="font-size:44px;font-weight:700;line-height:1.1;margin-bottom:16px;">
+        Session 1. This Wednesday.<br/><span class="grad-red-purple">Be there.</span>
+      </h2>
+      <p style="font-size:16px;color:rgba(255,255,255,0.4);max-width:480px;margin:0 auto;margin-bottom:8px;">March 18 &middot; 1:30 PM ET &middot; Members Lounge</p>
+      <p style="font-size:14px;color:rgba(255,255,255,0.3);max-width:480px;margin:0 auto;">Bring your laptop and your favourite AI tool. That's it.</p>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

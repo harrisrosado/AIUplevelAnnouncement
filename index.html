@@ -11,99 +11,52 @@
     html { scroll-behavior: smooth; }
     body { background: #000; color: #fff; }
 
-    /* ── Gradient text ── */
     .grad-purple-green {
       background: linear-gradient(135deg, #6161FF 0%, #00CA72 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .grad-purple-yellow {
       background: linear-gradient(135deg, #6161FF 0%, #FFCC00 80%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .grad-red-purple {
       background: linear-gradient(135deg, #FB275D 0%, #6161FF 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
 
-    /* ── Sticky nav ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(16px);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(0,0,0,0.85); backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 14px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 14px 48px; display: flex; align-items: center; justify-content: space-between;
     }
-
     nav a {
-      font-size: 12px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.5);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
+      font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.5);
+      text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s;
     }
     nav a:hover { color: #fff; }
 
-    /* ── Sections ── */
     section { padding: 96px 0; }
+    .container { max-width: 1040px; margin: 0 auto; padding: 0 48px; }
 
-    .container {
-      max-width: 1040px;
-      margin: 0 auto;
-      padding: 0 48px;
-    }
-
-    /* ── Section label ── */
     .eyebrow {
-      font-size: 11px;
-      font-weight: 600;
-      color: #6161FF;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 16px;
+      font-size: 11px; font-weight: 600; color: #6161FF;
+      letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 16px;
     }
 
-    /* ── Cards ── */
     .card {
-      background: #0f0f1a;
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: 16px;
-      padding: 28px;
+      background: #0f0f1a; border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 16px; padding: 28px;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
-    .card:hover {
-      border-color: rgba(97,97,255,0.3);
-      box-shadow: 0 0 28px rgba(97,97,255,0.08);
-    }
+    .card:hover { border-color: rgba(97,97,255,0.3); box-shadow: 0 0 28px rgba(97,97,255,0.08); }
 
-    /* ── Divider ── */
-    .divider {
-      width: 100%;
-      height: 1px;
-      background: rgba(255,255,255,0.07);
-      margin: 0;
-    }
+    .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.07); margin: 0; }
 
-    /* ── Session card (teaser) ── */
     .session-card {
-      background: #0a0a14;
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: 16px;
-      padding: 24px 28px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
+      background: #0a0a14; border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px; padding: 22px 28px;
+      display: flex; align-items: center; gap: 20px;
       transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
     }
     .session-card:hover {
@@ -113,63 +66,31 @@
     }
 
     .session-num {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-      color: white;
-      flex-shrink: 0;
+      width: 44px; height: 44px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: white; flex-shrink: 0;
     }
 
-    /* ── Kickoff card ── */
     .kickoff-card {
       background: linear-gradient(160deg, #0d0d2a 0%, #0a0a18 100%);
-      border: 1px solid rgba(251,39,93,0.3);
-      border-radius: 20px;
-      padding: 44px 40px;
-      position: relative;
-      overflow: hidden;
+      border: 1px solid rgba(251,39,93,0.3); border-radius: 20px;
+      padding: 44px 40px; position: relative; overflow: hidden;
     }
     .kickoff-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, #FB275D, #6161FF, #00CA72);
     }
 
-    /* ── CTA section ── */
-    #cta {
-      background: linear-gradient(160deg, #08082a 0%, #000 60%);
-      border-top: 1px solid rgba(97,97,255,0.2);
-    }
+    #cta { background: linear-gradient(160deg, #08082a 0%, #000 60%); border-top: 1px solid rgba(97,97,255,0.2); }
 
-    /* ── Scroll fade-in ── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Stagger children ── */
-    .stagger > * { transition-delay: calc(var(--i, 0) * 0.07s); }
+    .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════════════════
-     STICKY NAV
-══════════════════════════════════════════════════ -->
+<!-- NAV -->
 <nav>
-  <!-- Logo -->
   <svg viewBox="0 0 542.3 126.9" style="height:20px;width:auto;" xmlns="http://www.w3.org/2000/svg">
     <path fill="#FB275D" d="M24.8,87.2c-3.7,0-7.1-1.9-8.9-5.1c-1.8-3.1-1.7-6.9,0.3-9.9L34.5,44c1.9-3.1,5.4-4.9,9.1-4.8 c3.7,0.1,7.1,2.1,8.8,5.3c1.7,3.2,1.5,7-0.5,9.9L33.4,82.6C31.6,85.4,28.3,87.2,24.8,87.2z"/>
     <path fill="#FFCC00" d="M56.1,87.2c-3.7,0-7.1-1.9-8.9-5c-1.8-3.1-1.7-6.9,0.3-9.9l18.4-28.1c1.9-3.1,5.3-5,9.1-4.9s7.1,2.1,8.8,5.3 s1.5,7-0.7,10l-18.4,28C62.9,85.4,59.6,87.1,56.1,87.2L56.1,87.2z"/>
@@ -197,9 +118,7 @@
 <!-- ══════════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════════ -->
-<section id="hero" style="padding: 160px 0 96px; position:relative; overflow:hidden;">
-
-  <!-- Background glow orbs -->
+<section id="hero" style="padding:160px 0 96px;position:relative;overflow:hidden;">
   <div style="position:absolute;top:-120px;right:-80px;width:560px;height:560px;background:radial-gradient(circle,rgba(97,97,255,0.14) 0%,transparent 60%);pointer-events:none;"></div>
   <div style="position:absolute;bottom:-80px;left:60px;width:400px;height:400px;background:radial-gradient(circle,rgba(0,202,114,0.08) 0%,transparent 60%);pointer-events:none;"></div>
   <div style="position:absolute;top:200px;left:-120px;width:300px;height:300px;background:radial-gradient(circle,rgba(251,39,93,0.06) 0%,transparent 60%);pointer-events:none;"></div>
@@ -216,10 +135,10 @@
 
       <!-- Kickoff pill -->
       <div class="fade-in" style="display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,rgba(251,39,93,0.12),rgba(97,97,255,0.12));border:1px solid rgba(251,39,93,0.3);border-radius:12px;padding:16px 28px;margin-bottom:32px;">
-        <div style="width:42px;height:42px;background:rgba(251,39,93,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;">1</div>
+        <div style="width:42px;height:42px;background:rgba(251,39,93,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;">1</div>
         <div>
           <div style="font-size:11px;font-weight:600;color:#FB275D;letter-spacing:0.12em;text-transform:uppercase;">Session 1 kicks off</div>
-          <div style="font-size:18px;font-weight:700;color:#fff;margin-top:2px;">Wednesday, March 18 &middot; 1:30 PM ET &middot; Members Lounge</div>
+          <div style="font-size:18px;font-weight:700;color:#fff;margin-top:2px;">Wednesday, April 1 &middot; 1:30 PM ET &middot; Members Lounge</div>
         </div>
       </div>
 
@@ -252,13 +171,12 @@
 
     <div class="fade-in" style="margin-bottom:40px;">
       <div class="eyebrow">Up first</div>
-      <h2 style="font-size:40px;font-weight:700;line-height:1.1;">Session 1 is this Wednesday.</h2>
+      <h2 style="font-size:40px;font-weight:700;line-height:1.1;">Session 1 is April 1st.</h2>
     </div>
 
     <div class="kickoff-card fade-in">
       <div style="display:flex;gap:36px;align-items:flex-start;flex-wrap:wrap;">
 
-        <!-- Left: content -->
         <div style="flex:1;min-width:320px;">
           <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
             <div style="width:52px;height:52px;background:#FB275D;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#fff;">01</div>
@@ -275,13 +193,12 @@
           </p>
         </div>
 
-        <!-- Right: logistics -->
         <div style="width:260px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:28px 24px;flex-shrink:0;">
           <div style="font-size:11px;font-weight:600;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;">Details</div>
 
           <div style="margin-bottom:16px;">
             <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Date</div>
-            <div style="font-size:15px;font-weight:600;color:#fff;">Wednesday, March 18</div>
+            <div style="font-size:15px;font-weight:600;color:#fff;">Wednesday, April 1</div>
           </div>
           <div style="margin-bottom:16px;">
             <div style="font-size:12px;color:rgba(255,255,255,0.35);margin-bottom:4px;">Time</div>
@@ -311,7 +228,7 @@
 
 
 <!-- ══════════════════════════════════════════════════
-     THE LINEUP (TEASER FORMAT)
+     THE LINEUP
 ══════════════════════════════════════════════════ -->
 <section id="lineup">
   <div class="container">
@@ -321,66 +238,82 @@
       <h2 style="font-size:40px;font-weight:700;line-height:1.1;">Six sessions.<br/><span class="grad-purple-yellow">Here's what's coming.</span></h2>
     </div>
 
-    <div class="fade-in stagger" style="display:flex;flex-direction:column;gap:12px;">
+    <div class="fade-in" style="display:flex;flex-direction:column;gap:12px;">
 
       <!-- Session 1 -->
-      <div class="session-card" style="--i:0;border-color:rgba(251,39,93,0.2);">
+      <div class="session-card" style="border-color:rgba(251,39,93,0.25);">
         <div class="session-num" style="background:#FB275D;">01</div>
         <div style="flex:1;">
           <div style="font-size:18px;font-weight:600;">What the $%*&amp; is AI?</div>
           <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">Cutting through the hype. LLMs, hallucinations, and your first real prompt.</div>
         </div>
-        <div style="font-size:12px;font-weight:600;color:#FB275D;white-space:nowrap;">WED 3/18 &#8594;</div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:13px;font-weight:700;color:#FB275D;">WED APR 1</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px;">1:30 PM ET</div>
+        </div>
       </div>
 
       <!-- Session 2 -->
-      <div class="session-card" style="--i:1;">
+      <div class="session-card" style="border-color:rgba(0,202,114,0.2);">
         <div class="session-num" style="background:#00CA72;">02</div>
         <div style="flex:1;">
           <div style="font-size:18px;font-weight:600;">monday AI &mdash; the full tour</div>
           <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">Every AI feature in the platform. Hands-on with Brad's Demo Factory.</div>
         </div>
-        <div style="font-size:12px;font-weight:600;color:#00CA72;white-space:nowrap;">WED 3/25</div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:13px;font-weight:700;color:#00CA72;">WED APR 8</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px;">1:30 PM ET</div>
+        </div>
       </div>
 
       <!-- Session 3 -->
-      <div class="session-card" style="--i:2;">
+      <div class="session-card" style="border-color:rgba(87,155,252,0.2);">
         <div class="session-num" style="background:#579BFC;">03</div>
         <div style="flex:1;">
           <div style="font-size:18px;font-weight:600;">Prompt like a pro</div>
           <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">From trial-and-error to intentional. Sales-specific prompt recipes you'll keep.</div>
         </div>
-        <div style="font-size:12px;font-weight:600;color:#579BFC;white-space:nowrap;">WED 4/1</div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:13px;font-weight:700;color:#579BFC;">WED APR 15</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px;">1:30 PM ET</div>
+        </div>
       </div>
 
       <!-- Session 4 -->
-      <div class="session-card" style="--i:3;">
+      <div class="session-card" style="border-color:rgba(253,171,61,0.2);">
         <div class="session-num" style="background:#FDAB3D;">04</div>
         <div style="flex:1;">
           <div style="font-size:18px;font-weight:600;">AI that sells</div>
           <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">Account research in 90 seconds. Follow-ups in 30. Your AI-powered sales week.</div>
         </div>
-        <div style="font-size:12px;font-weight:600;color:#FDAB3D;white-space:nowrap;">WED 4/8</div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:13px;font-weight:700;color:#FDAB3D;">WED APR 22</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);margin-top:2px;">1:30 PM ET</div>
+        </div>
       </div>
 
       <!-- Session 5 -->
-      <div class="session-card" style="--i:4;">
+      <div class="session-card">
         <div class="session-num" style="background:#6161FF;">05</div>
         <div style="flex:1;">
           <div style="font-size:18px;font-weight:600;">Meet your digital workers</div>
           <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">The difference between automation and agents. You'll build one.</div>
         </div>
-        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.25);white-space:nowrap;">TBD</div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.25);">TBD</div>
+        </div>
       </div>
 
       <!-- Session 6 -->
-      <div class="session-card" style="--i:5;">
+      <div class="session-card">
         <div class="session-num" style="background:linear-gradient(135deg,#6161FF,#9d50dd);">06</div>
         <div style="flex:1;">
           <div style="font-size:18px;font-weight:600;">Own the AI conversation</div>
           <div style="font-size:14px;color:rgba(255,255,255,0.45);margin-top:4px;">The 8 objections you'll hear. Competitive positioning. A high-pressure gauntlet.</div>
         </div>
-        <div style="font-size:12px;font-weight:600;color:rgba(255,255,255,0.25);white-space:nowrap;">TBD</div>
+        <div style="text-align:right;flex-shrink:0;">
+          <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.25);">TBD</div>
+        </div>
       </div>
 
     </div>
@@ -406,7 +339,7 @@
       <div class="card" style="text-align:center;padding:36px 24px;">
         <div style="font-size:48px;font-weight:700;line-height:1;" class="grad-purple-green">30</div>
         <div style="font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.1em;margin-top:8px;margin-bottom:16px;">min talk</div>
-        <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.6;">An SE-hosted TED-style talk. The concept, the context, the "why this matters." No death-by-slide.</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.45);line-height:1.6;">An SE-hosted TED-style talk. The concept, the context, the "why this matters right now." No death-by-slide.</p>
       </div>
 
       <div class="card" style="text-align:center;padding:36px 24px;">
@@ -434,9 +367,9 @@
     <div class="fade-in">
       <p style="font-size:13px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:20px;">monday.com SE Team &middot; 2026</p>
       <h2 style="font-size:44px;font-weight:700;line-height:1.1;margin-bottom:16px;">
-        Session 1. This Wednesday.<br/><span class="grad-red-purple">Be there.</span>
+        Session 1. April 1st.<br/><span class="grad-red-purple">Be there.</span>
       </h2>
-      <p style="font-size:16px;color:rgba(255,255,255,0.4);max-width:480px;margin:0 auto;margin-bottom:8px;">March 18 &middot; 1:30 PM ET &middot; Members Lounge</p>
+      <p style="font-size:16px;color:rgba(255,255,255,0.4);max-width:480px;margin:0 auto;margin-bottom:8px;">April 1 &middot; 1:30 PM ET &middot; Members Lounge</p>
       <p style="font-size:14px;color:rgba(255,255,255,0.3);max-width:480px;margin:0 auto;">Bring your laptop and your favourite AI tool. That's it.</p>
     </div>
   </div>
@@ -444,16 +377,11 @@
 
 
 <script>
-  // Fade-in on scroll
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
     });
   }, { threshold: 0.12 });
-
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 </script>
 
